@@ -9,22 +9,19 @@ public class DepositTrasaction extends BaseTransaction {
         super(amount, date);
     }
     private boolean checkDepositAmount(int amt){
-        if (amt < 0){
-           return false;
-        }
-        else{
-            return  true;
-        }
+        return amt >= 0;
     }
 
     // Method to print a transaction receipt or details
     public void printTransactionDetails(){
-        System.out.println("Deposit Trasaction: "+this.toString());
+        System.out.println("Withdrawal Transaction: "+this.toString());
     }
 
-    public void apply(BankAccount ba){
+   @Override
+   public void apply(BankAccount ba){
         double curr_balance = ba.getBalance();
         double new_balance = curr_balance + getAmount();
         ba.setBalance(new_balance);
+       System.out.println("Deposit applied. New balance: " + new_balance);
     }
 }

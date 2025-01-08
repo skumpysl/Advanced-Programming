@@ -13,14 +13,14 @@ public abstract class BaseTransaction implements TransactionInterface {
      * Lecture1_adt.TransactionInterface Constructor
      * @param amount in an integer
      * @param date: Not null, and must be a Calendar object
-     * @return void
+     * return void
      * Instialises the field, attributes of a transaction
-     * Creates a object of this
+     * Creates an object of this
      */
     public BaseTransaction(int amount, @NotNull Calendar date)  {
         this.amount = amount;
         this.date = (Calendar) date.clone();
-        int uniq = (int) Math.random()*10000;
+        int uniq = (int) (Math.random() * 10000);
         transactionID = date.toString()+uniq;
     }
 

@@ -10,11 +10,7 @@ public class WithdrawalTransaction extends BaseTransaction {
     }
 
     private boolean checkDepositAmount(int amt) {
-        if (amt < 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return amt >= 0;
     }
 
     // Method to reverse the transaction
@@ -24,22 +20,26 @@ public class WithdrawalTransaction extends BaseTransaction {
 
     // Method to print a transaction receipt or details
     public void printTransactionDetails() {
-        System.out.println("Deposit Trasaction: " + this.toString());
+        System.out.println("Deposit Transaction: " + this.toString());
     }
 
     /*
-    Oportunity for assignment: implementing different form of withdrawal
+    Opportunity for assignment: implementing different form of withdrawal
      */
     public void apply(BankAccount ba) {
         double curr_balance = ba.getBalance();
         if (curr_balance > getAmount()) {
             double new_balance = curr_balance - getAmount();
             ba.setBalance(new_balance);
+            System.out.println("Withdrawal applied. New balance: " + new_balance);
+        }
+        else
+            { System.out.println("Insufficient funds for withdrawal."); }
         }
     }
 
     /*
     Assignment 1 Q3: Write the Reverse method - a method unique to the WithdrawalTransaction Class
      */
-}
+
 
