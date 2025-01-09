@@ -18,7 +18,7 @@ public class WithdrawalTransaction extends BaseTransaction {
 
     // Method to print a transaction receipt or details
     public void printTransactionDetails() {
-        System.out.println("Deposit Transaction: " + this.toString());
+        System.out.println("Deposit Transaction: " + this);
     }
 
     /*
