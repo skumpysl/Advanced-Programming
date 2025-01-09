@@ -5,18 +5,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Calendar;
 
 public class WithdrawalTransaction extends BaseTransaction {
-    public WithdrawalTransaction(int amount, @NotNull Calendar date) {
+    private final double originalBalance;
+    public WithdrawalTransaction(int amount, @NotNull Calendar date, double originalBalance)
+    {
         super(amount, date);
+        this.originalBalance = originalBalance;
     }
 
     private boolean checkDepositAmount(int amt) {
         return amt >= 0;
     }
-
-    // Method to reverse the transaction
-    public boolean reverse() {
-        return true;
-    } // return true if reversal was successful
 
     // Method to print a transaction receipt or details
     public void printTransactionDetails() {
@@ -26,6 +24,8 @@ public class WithdrawalTransaction extends BaseTransaction {
     /*
     Opportunity for assignment: implementing different form of withdrawal
      */
+
+    @Override
     public void apply(BankAccount ba) {
         double curr_balance = ba.getBalance();
         if (curr_balance > getAmount()) {
@@ -36,8 +36,13 @@ public class WithdrawalTransaction extends BaseTransaction {
         else
             { System.out.println("Insufficient funds for withdrawal."); }
         }
-    }
 
+        public boolean reverse(BankAccount ba) {
+            ba.setBalance(originalBalance);
+            System.out.println("Withdrawal reversed. Balance restored to: " + originalBalance);
+            return true;
+        }
+    }
     /*
     Assignment 1 Q3: Write the Reverse method - a method unique to the WithdrawalTransaction Class
      */
